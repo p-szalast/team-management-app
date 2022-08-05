@@ -1,0 +1,146 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="NorthwindModel">
+			<EntityType Name="User">
+				<Key>
+					<PropertyRef Name="UserID"/>
+				</Key>
+				<Property xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="UserID" Type="Edm.String" Nullable="false"
+					p8:StoreGeneratedPattern="Identity"/>
+				<Property Name="FirstName" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="LastName" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="Address" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="City" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="Country" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="Email" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="Phone" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="Note" Type="Edm.String" Nullable="true" Unicode="true"/>
+				<Property Name="Admin" Type="Edm.Boolean" Nullable="false"/>
+				<NavigationProperty Name="DayOffSet" Relationship="NorthwindModel.FK_UserSet_DayOffSet" FromRole="UserSet" ToRole="DayOffSet"/>
+				<NavigationProperty Name="PositionSet" Relationship="NorthwindModel.FK_UserSet_PositionSet" FromRole="UserSet" ToRole="PositionSet"/>
+			</EntityType>
+			<EntityType Name="Position">
+				<Key>
+					<PropertyRef Name="PositionID"/>
+				</Key>
+				<Property xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="PositionID" Type="Edm.String" Nullable="false"
+					Unicode="true" p8:StoreGeneratedPattern="Identity"/>
+				<Property Name="PositionName" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="PositionDescription" Type="Edm.String" Nullable="true" Unicode="true"/>
+				<Property Name="UserID" Type="Edm.String" Nullable="false"/>
+				<Property Name="TeamID" Type="Edm.String" Nullable="false"/>
+				<NavigationProperty Name="TeamSet" Relationship="NorthwindModel.FK_PositionSet_TeamSet" FromRole="PositionSet" ToRole="TeamSet"/>
+				<NavigationProperty Name="UserSet" Relationship="NorthwindModel.FK_UserSet_PositionSet" FromRole="PositionSet" ToRole="UserSet"/>
+			</EntityType>
+			<EntityType Name="Team">
+				<Key>
+					<PropertyRef Name="TeamID"/>
+				</Key>
+				<Property xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="TeamID" Type="Edm.String" Nullable="false" Unicode="true"
+					p8:StoreGeneratedPattern="Identity"/>
+				<Property Name="TeamName" Type="Edm.String" Nullable="false" Unicode="true"/>
+				<Property Name="TeamDescription" Type="Edm.String" Nullable="true" Unicode="true"/>
+				<NavigationProperty Name="PositionSet" Relationship="NorthwindModel.FK_PositionSet_TeamSet" FromRole="TeamSet" ToRole="PositionSet"/>
+			</EntityType>
+			<EntityType Name="DayOff">
+				<Key>
+					<PropertyRef Name="DayOffID"/>
+				</Key>
+				<Property xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="DayOffID" Type="Edm.String" Nullable="false"
+					p8:StoreGeneratedPattern="Identity"/>
+				<Property Name="UserID" Type="Edm.String" Nullable="false"/>
+				<Property Name="DateTimeFrom" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="DateTimeTo" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="DayOffTypeID" Type="Edm.String" Nullable="false"/>
+				<Property Name="Comment" Type="Edm.String" Nullable="true"/>
+				<NavigationProperty Name="DayOffTypeSet" Relationship="NorthwindModel.FK_DayOffSet_DayOffTypeSet" FromRole="DayOffSet"
+					ToRole="DayOffTypeSet"/>
+			</EntityType>
+			<EntityType Name="DayOffType">
+				<Key>
+					<PropertyRef Name="DayOffTypeID"/>
+				</Key>
+				<Property Name="DayOffTypeID" Type="Edm.String" Nullable="false"/>
+				<Property Name="DayOffTypeName" Type="Edm.String" Nullable="false"/>
+			</EntityType>
+			<Association Name="FK_UserSet_DayOffSet">
+				<End Role="UserSet" Type="NorthwindModel.User" Multiplicity="1"/>
+				<End Role="DayOffSet" Type="NorthwindModel.DayOff" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="UserSet">
+						<PropertyRef Name="UserID"/>
+					</Principal>
+					<Dependent Role="DayOffSet">
+						<PropertyRef Name="UserID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_UserSet_PositionSet">
+				<End Role="UserSet" Type="NorthwindModel.User" Multiplicity="1"/>
+				<End Role="PositionSet" Type="NorthwindModel.Position" Multiplicity="*"/>
+				<ReferentialConstraint>
+					<Principal Role="UserSet">
+						<PropertyRef Name="UserID"/>
+					</Principal>
+					<Dependent Role="PositionSet">
+						<PropertyRef Name="UserID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_PositionSet_TeamSet">
+				<End Role="PositionSet" Type="NorthwindModel.Position" Multiplicity="*"/>
+				<End Role="TeamSet" Type="NorthwindModel.Team" Multiplicity="1"/>
+				<ReferentialConstraint>
+					<Dependent Role="PositionSet">
+						<PropertyRef Name="TeamID"/>
+					</Dependent>
+					<Principal Role="TeamSet">
+						<PropertyRef Name="TeamID"/>
+					</Principal>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FK_DayOffSet_DayOffTypeSet">
+				<End Role="DayOffSet" Type="NorthwindModel.DayOff" Multiplicity="*"/>
+				<End Role="DayOffTypeSet" Type="NorthwindModel.DayOffType" Multiplicity="1"/>
+				<ReferentialConstraint>
+					<Principal Role="DayOffSet">
+						<PropertyRef Name="DayOffTypeID"/>
+					</Principal>
+					<Dependent Role="DayOffTypeSet">
+						<PropertyRef Name="DayOffTypeID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+		</Schema>
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="ODataWeb.Northwind.Model">
+			<EntityContainer xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="NorthwindEntities" p7:LazyLoadingEnabled="true"
+				m:IsDefaultEntityContainer="true">
+				<EntitySet Name="UserSet" EntityType="NorthwindModel.User"/>
+				<EntitySet Name="PositionSet" EntityType="NorthwindModel.Position"/>
+				<EntitySet Name="TeamSet" EntityType="NorthwindModel.Team"/>
+				<EntitySet Name="DayOffSet" EntityType="NorthwindModel.DayOff"/>
+				<EntitySet Name="DayOffTypeSet" EntityType="NorthwindModel.DayOffType"/>
+				<AssociationSet Name="FK_UserSet_DayOffSet" Association="NorthwindModel.FK_UserSet_DayOffSet">
+					<End Role="UserSet" EntitySet="UserSet"/>
+					<End Role="DayOffSet" EntitySet="DayOffSet"/>
+				</AssociationSet>
+				<AssociationSet Name="FK_UserSet_PositionSet" Association="NorthwindModel.FK_UserSet_PositionSet">
+					<End Role="UserSet" EntitySet="UserSet"/>
+					<End Role="PositionSet" EntitySet="PositionSet"/>
+				</AssociationSet>
+				<AssociationSet Name="FK_PositionSet_TeamSet" Association="NorthwindModel.FK_PositionSet_TeamSet">
+					<End Role="PositionSet" EntitySet="PositionSet"/>
+					<End Role="TeamSet" EntitySet="TeamSet"/>
+				</AssociationSet>
+				<AssociationSet Name="FK_DayOffSet_DayOffTypeSet" Association="NorthwindModel.FK_DayOffSet_DayOffTypeSet">
+					<End Role="DayOffSet" EntitySet="DayOffSet"/>
+					<End Role="DayOffTypeSet" EntitySet="DayOffTypeSet"/>
+				</AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

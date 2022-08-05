@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>assignPositionDialogTitle}">
+		<beginButton>
+			<Button text="{i18n>closeBtn}" press=".onClose"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>saveBtn}" type="Emphasized" enabled="{config>/assignTeamPositionValid}" press=".onSavePosition"/>
+		</endButton>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<Label labelFor="positionInput" text="{i18n>positionLabel}"/>
+				<Input id="positionInput" value="{config>/assignTeamPosition}" valueLiveUpdate="true"
+					valueState="{= ${config>/assignTeamPositionValid} ? 'None' : 'Error' }" valueStateText="{i18n>emptyInputMsg}"
+					liveChange=".validator.validateNotEmpty"/>
+				<Label class="sapUiSmallMarginTop" labelFor="positionDescriptionInput" text="{i18n>positionDescriptionLabel}"/>
+				<TextArea id="positionDescriptionInput" cols="50" value="{config>/assignTeamPositionDescription}" valueLiveUpdate="true"/>
+			</VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,37 @@
+<mvc:View controllerName="project.fin.controller.AssignTeam" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<Page class="sapUiResponsivePadding" title="{i18n>appTitle}" titleAlignment="Center" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<Panel backgroundDesign="Transparent">
+				<List id="assignTeamUserList" class="finDisabledCheckbox" items="{oData>/UserSet}" mode="MultiSelect" sticky="HeaderToolbar" growing="true"
+					growingScrollToLoad="true" select=".onUserPress">
+					<headerToolbar>
+						<OverflowToolbar>
+							<core:Icon src="sap-icon://leads"/>
+							<Title text="{i18n>assignTeamPageTitle}"/>
+							<ToolbarSpacer/>
+							<Label labelFor="assignTeamSelect" text="{i18n>teamLabel}" showColon="true"/>
+							<Select id="assignTeamSelect" selectedKey="{config>/assignTeamSelectedTeam}" items="{oData>/TeamSet}" change=".onSelectTeam">
+								<core:Item key="{oData>TeamID}" text="{oData>TeamName}"/>
+							</Select>
+							<SearchField width="auto" value="{config>/assignTeamSearchField}" search=".onSearch"/>
+							<Button text="{i18n>deselectAllBtn}" press=".onDeselectAll"/>
+							<Button text="{i18n>assignBtn}" enabled="{config>/assignTeamBtnEnabled}" type="Emphasized" press=".onAssign"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<items>
+						<ObjectListItem intro="{oData>UserID}" title="{oData>FirstName} {oData>LastName}"
+							number="{ parts: ['config>/assignTeamPositions', 'oData>UserID'], formatter: '.getPositionFromObject' }" numberState="Information"
+							type="Active" press=".onUserPress">
+							<firstStatus>
+								<ObjectStatus text="{i18n>newPositionLabel}" visible="{= ${oData>UserID} in ${config>/assignTeamPositions} }"/>
+							</firstStatus>
+						</ObjectListItem>
+					</items>
+				</List>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

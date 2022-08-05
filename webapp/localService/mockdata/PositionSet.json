@@ -1,0 +1,103 @@
+[{
+	"PositionID": "ssf",
+	"UserID": "abz",
+	"TeamID": "HR",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "ssh",
+	"UserID": "abz",
+	"TeamID": "SAP-MALAGA",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "Stażysta SAP FIORI - opis"
+}, {
+	"PositionID": "ssd",
+	"UserID": "abz",
+	"TeamID": "SPRZ",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "ssh",
+	"UserID": "abz",
+	"TeamID": "SAP-MALAGA",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "aaa",
+	"UserID": "mhs",
+	"TeamID": "SAP",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "xxx",
+	"UserID": "pas",
+	"TeamID": "SAP",
+	"PositionName": "Senior",
+	"PositionDescription": "Idealnie opanowane kopiowanie kodu z internetu"
+}, {
+	"PositionID": "ads",
+	"UserID": "pas",
+	"TeamID": "SPRZ",
+	"PositionName": "Wciskacz odkurzaczy",
+	"PositionDescription": "Sprzedaje odkurzacze starszym ludziom"
+}, {
+	"PositionID": "aab",
+	"UserID": "pas",
+	"TeamID": "HR",
+	"PositionName": "Senior HR Developer",
+	"PositionDescription": "Przesłuchuje głupców, którzy chcą tu pracować"
+}, {
+	"PositionID": "aac",
+	"UserID": "pas",
+	"TeamID": "KS",
+	"PositionName": "Rachmistrz",
+	"PositionDescription": "Używa liczydła"
+}, {
+	"PositionID": "aad",
+	"UserID": "prs",
+	"TeamID": "SAP",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "aae",
+	"UserID": "mtg",
+	"TeamID": "SAP",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "aaf",
+	"UserID": "jrb",
+	"TeamID": "SAP",
+	"PositionName": "Stażysta SAP FIORI",
+	"PositionDescription": "W sumie to klika tylko w klawiaturę"
+}, {
+	"PositionID": "aag",
+	"UserID": "prs",
+	"TeamID": "HR",
+	"PositionName": "Auror",
+	"PositionDescription": "Kmwtw"
+}, {
+	"PositionID": "aah",
+	"UserID": "mtg",
+	"TeamID": "HR",
+	"PositionName": "Dobry policjant",
+	"PositionDescription": "Podczas rozmów rektrutacyjnych jest miły"
+}, {
+	"PositionID": "aai",
+	"UserID": "jrb",
+	"TeamID": "IT",
+	"PositionName": "Adobe Reader Developer",
+	"PositionDescription": "Macha szybko myszką i instaluje Adobe Readera"
+}, {
+	"PositionID": "aaj",
+	"UserID": "pas",
+	"TeamID": "IT",
+	"PositionName": "Specjalista",
+	"PositionDescription": "Naprawia komputery"
+}, {
+	"PositionID": "aak",
+	"UserID": "mhs",
+	"TeamID": "IT",
+	"PositionName": "Kabel",
+	"PositionDescription": "Łączy kabelki"
+}]

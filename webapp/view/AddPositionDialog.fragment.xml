@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<Dialog id="addPositionDialog" title="{i18n>addPositionTitle}" icon="sap-icon://add-employee" contentHeight="auto" verticalScrolling="false">
+		<content >
+			<form:Form editable="true">
+				<form:layout >
+					<form:ResponsiveGridLayout/>
+				</form:layout>
+				<form:formContainers>
+					<form:FormContainer>
+						<form:formElements>
+							<form:FormElement label="{i18n>UserID}">
+								<form:fields>
+									<Input fieldGroupIds="addPositionForm" value="{config>/addPosition/UserID}" showSuggestion="true" showValueHelp="true"
+										liveChange=".validator.validateUserID" valueLiveUpdate="true" valueHelpRequest=".onValueHelpRequest" suggestionItems="{oData>/UserSet}"
+										suggestionItemSelected=".validator.validateUserID" valueState="{= ${config>/addPosition/UserIDValid} ? 'None' : 'Error'}" required="true">
+										<core:ListItem key="{oData>UserID}" text="{oData>UserID} ({oData>FirstName} {oData>LastName})"/>
+									</Input>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement label="{i18n>PositionName}">
+								<form:fields>
+									<Input fieldGroupIds="addPositionForm" value="{config>/addPosition/PositionName}" liveChange=".validator.validateNotEmpty"
+										valueState="{= ${config>/addPosition/PositionNameValid} ? 'None' : 'Error'}" valueLiveUpdate="true" required="true"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement label="{i18n>PositionDescription}">
+								<form:fields>
+									<TextArea value="{config>/addPosition/PositionDescription}" rows="3"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+		</content>
+		<beginButton>
+			<Button text="{i18n>AcceptAndAddTeamBtn}" enabled="{= ${config>/addPosition/allValid}}" press=".onAddPosition" type="Accept"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>CancelBtn}" press=".onCloseDialog" type="Reject"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

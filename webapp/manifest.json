@@ -1,0 +1,207 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "project.fin",
+		"type": "application",
+		"i18n": {
+		"bundleUrl": "i18n/i18n.properties",
+		"supportedLocales": [""],
+		"fallbackLocale": ""
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		},
+		"dataSources": {
+			"mockService": {
+				"uri": "/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "project.fin.view.App",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "project.fin.i18n.i18n",
+					"supportedLocales": [""],
+					"fallbackLocale": ""
+				}
+			},
+			"config": {
+			    "type": "sap.ui.model.json.JSONModel",
+				"uri": "model/config.json"
+			},
+			"TeamBasedOnUserID": {
+			    "type": "sap.ui.model.json.JSONModel"
+			},
+			"oData": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "mockService",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "project.fin.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"bypassed": {
+				    "target": "notFound"
+				}
+			},
+			"routes": [{
+				"name": "main",
+				"pattern": "",
+				"target": "main"
+			},
+			{
+				"name": "admin",
+				"pattern": "admin",
+				"target": "admin"
+			},
+			{
+				"name": "userCalendar",
+				"pattern": "user-calendar",
+				"target": "userCalendar"
+			},
+			{
+				"name": "teamCalendar",
+				"pattern": "team-calendar",
+				"target": "teamCalendar"
+			},
+			{
+				"name": "addDayOffRequest",
+				"pattern": "add-day-off-request:?query:",
+				"target": "addDayOffRequest"
+			},
+			{
+				"name": "addEditTeam",
+				"pattern": "add-edit-team/:Team:",
+				"target": "addEditTeam"
+			},
+			{
+				"name": "assignTeam",
+				"pattern": "assign-team",
+				"target": "assignTeam"
+			},
+			{
+				"name": "addEditUser",
+				"pattern": "add-user:?query:",
+				"target": "addEditUser"
+			}],
+			"targets": {
+				"main": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "Main",
+					"level" : 1
+				},
+				"admin": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "Admin",
+					"level" : 2
+				},
+				"userCalendar": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "UserCalendar",
+					"level" : 2
+				},
+				"teamCalendar": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "TeamCalendar",
+					"level" : 3
+				},
+				"addDayOffRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "AddDayOffRequest",
+					"level" : 3
+				},
+				"addEditTeam": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "AddEditTeam",
+					"level" : 3
+				},
+				"assignTeam": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "AssignTeam",
+					"level" : 3
+				},
+				"addEditUser": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "AddEditUser",
+					"level" : 3
+				},
+				"notFound": {
+				    "viewName": "NotFound"
+				}
+			}
+		}
+	}
+}

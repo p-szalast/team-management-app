@@ -1,0 +1,29 @@
+[{
+	"TeamID": "IT",
+	"TeamName": "IT",
+	"TeamDescription": "Naprawią wszystko"
+}, {
+	"TeamID": "HR",
+	"TeamName": "HR",
+	"TeamDescription": "Mają osobną kuchnię"
+}, {
+	"TeamID": "KS",
+	"TeamName": "Księgowość",
+	"TeamDescription": "Liczą dla nas pieniążki"
+}, {
+	"TeamID": "SPRZ",
+	"TeamName": "Dział sprzedaży",
+	"TeamDescription": "Sprzedają nas kod"
+}, {
+	"TeamID": "SAP",
+	"TeamName": "SAP Technology",
+	"TeamDescription": "To my!"
+}, {
+	"TeamID": "SAP-MALAGA",
+	"TeamName": "SAP Technology Malaga",
+	"TeamDescription": "to samo co SAP ale w Hiszpanii"
+}, {
+	"TeamID": "BezUsera",
+	"TeamName": "Team bez userów",
+	"TeamDescription": "Ludzie, tu nikogo nie ma!"
+}]

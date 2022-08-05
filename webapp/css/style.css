@@ -1,0 +1,67 @@
+/* begin ABZ */
+/* disables manual input in Date and Time pickers */
+.finDisabledInput input {
+    pointer-events: none;
+}
+
+/* makes font bold, for example in ObjectAttribute */
+.finBoldText span {
+    font-weight: bold;
+}
+
+
+/* disables checkboxes in MultiSelect List */
+.finDisabledCheckbox .sapMLIBSelectM {
+    pointer-events: none;
+}
+
+/* end ABZ */
+
+
+/*#PAS 1.06.2022*/
+.finBtnBox {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+    margin-top: 2em;
+}
+
+.finTileBox {
+    justify-content: center;
+}
+
+.finNumericContent.sapMNCValue {
+    justify-content: flex-start;
+}
+
+.finDynamicHeaderBox {
+    gap: 1.5em;
+}
+
+/*/PAS*/
+
+
+.finListItemClass {
+    padding: 30px 10%;
+}
+
+/* User Calendar prs */
+.sapUiCalendarApp:hover::after {
+    background-color: transparent !important
+}
+
+.finCustomTeamCalendarBtn:hover {
+    background-color: none;
+}
+
+.finCustomBtnIcon:hover {
+    cursor: pointer
+}
+
+/*prs*/
+
+@media (min-width: 769px) {
+    .finTileBox {
+        justify-content: flex-start;
+    }
+}

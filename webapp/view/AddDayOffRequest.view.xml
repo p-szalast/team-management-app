@@ -1,0 +1,67 @@
+<mvc:View controllerName="project.fin.controller.AddDayOffRequest" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page class="sapUiResponsivePadding" title="{i18n>appTitle}" titleAlignment="Center" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<Panel backgroundDesign="Transparent">
+				<form:Form editable="true">
+					<form:title>
+						<core:Title icon="{= ${config>/dayOffRequestEditMode} ? 'sap-icon://request' : 'sap-icon://create-entry-time'}"
+							text="{= ${config>/dayOffRequestEditMode} ? ${i18n>editDayOffRequestPageTitle} : ${i18n>addDayOffRequestPageTitle}}"/>
+					</form:title>
+					<form:formContainers>
+						<form:FormContainer visible="{= ${config>/dayOffRequestCurrent/DayOffTypeID} !== 'on'}">
+							<form:FormElement label="{i18n>dateFromLabel}">
+								<DatePicker class="finDisabledInput" required="true" dateValue="{config>/dayOffRequestCurrent/DateFrom}" change=".onDateFromChange"/>
+							</form:FormElement>
+							<form:FormElement label="{i18n>dateToLabel}">
+								<DatePicker class="finDisabledInput" required="true" minDate="{config>/dayOffRequestMinDate}"
+									dateValue="{config>/dayOffRequestCurrent/DateTo}"/>
+							</form:FormElement>
+						</form:FormContainer>
+						<form:FormContainer visible="{= ${config>/dayOffRequestCurrent/DayOffTypeID} === 'on'}">
+							<form:FormElement label="{i18n>dateLabel}">
+								<DatePicker class="finDisabledInput" required="true" dateValue="{config>/dayOffRequestCurrent/Date}"/>
+							</form:FormElement>
+							<form:FormElement label="{i18n>timeFromLabel}">
+								<TimePicker class="finDisabledInput" required="true" dateValue="{config>/dayOffRequestCurrent/TimeFrom}"
+									valueState="{= ${config>/dayOffRequestTimeValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidTimeMsg}" minutesStep="5"
+									secondsStep="60" change=".onTimeChange"/>
+							</form:FormElement>
+							<form:FormElement label="{i18n>timeToLabel}">
+								<TimePicker class="finDisabledInput" required="true" dateValue="{config>/dayOffRequestCurrent/TimeTo}"
+									valueState="{= ${config>/dayOffRequestTimeValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidTimeMsg}" minutesStep="5"
+									secondsStep="60" change=".onTimeChange"/>
+							</form:FormElement>
+						</form:FormContainer>
+						<form:FormContainer>
+							<form:FormElement label="{i18n>requestTypeLabel}">
+								<Select required="true" selectedKey="{config>/dayOffRequestCurrent/DayOffTypeID}" items="{oData>/DayOffTypeSet}"
+									change=".onSelectDayOffType">
+									<core:Item key="{oData>DayOffTypeID}" text="{oData>DayOffTypeName}"/>
+								</Select>
+							</form:FormElement>
+						</form:FormContainer>
+						<form:FormContainer>
+							<form:FormElement label="{i18n>commentLabel}">
+								<TextArea valueLiveUpdate="true" value="{config>/dayOffRequestCurrent/Comment}"/>
+							</form:FormElement>
+						</form:FormContainer>
+					</form:formContainers>
+					<form:layout>
+						<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4"
+							emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</form:layout>
+				</form:Form>
+				<VBox class="sapUiSmallMarginTop" alignItems="Center">
+					<Button class="sapUiSmallMarginBottom" enabled="{config>/dayOffRequestTimeValid}" text="{i18n>saveBtn}" icon="sap-icon://save"
+						press=".onSave" type="Emphasized"/>
+					<Button visible="{= !${config>/dayOffRequestEditMode}}" enabled="{config>/dayOffRequestTimeValid}" text="{i18n>saveAndAddNextBtn}"
+						icon="sap-icon://add" press=".onSaveAndAddNext"/>
+				</VBox>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<ResponsivePopover id="legendPopover" title="{i18n>userCalendarLegend}" placement="Bottom" showHeader="true">
+		<PlanningCalendarLegend appointmentItemsHeader="{i18n>dayOffTypes}" appointmentItems="{config>/aUserCalendarLegendItems}">
+			<appointmentItems label="asdasd">
+				<u:CalendarLegendItem text="{config>DayOffTypeName}" color="{config>DayOffTypeColor}"/>
+			</appointmentItems>
+		</PlanningCalendarLegend>
+	</ResponsivePopover>
+</core:FragmentDefinition>

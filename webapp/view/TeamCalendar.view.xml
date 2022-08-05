@@ -1,0 +1,40 @@
+<!--mhs-->
+<mvc:View controllerName="project.fin.controller.TeamCalendar" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:unified="sap.ui.unified">
+	<Page showHeader="true" title="{i18n>appTitle}" titleAlignment="Center" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<VBox>
+				<PlanningCalendar id="PC1" rows="{config>/aTeamUsers}" appointmentsVisualization="Filled" appointmentSelect=".handleDayOffSelect"
+					showEmptyIntervalHeaders="false" startDate="{config>/TeamCalendarStartDate}" groupAppointmentsMode="Expanded"
+					intervalSelect=".handleIntervalSelect" stickyHeader="true" viewChange=".handleViewChange" startDateChange=".handleDateChange">
+					<toolbarContent>
+						<Select items="{config>/aCurrentUserTeams}" selectedKey="{config>/CurrentSelectedTeamKey}" change=".onSelectChange">
+							<core:Item key="{config>TeamID}" text="{config>TeamName}"/>
+						</Select>
+						<Button id="legendButton" icon="sap-icon://legend" press=".showLegendPopover" tooltip="{i18n>legendTooltip}" ariaHasPopup="Dialog"
+							text="{= ${device>/system/phone} ? ${i18n>legend} : ''}"/>
+						<Title text="{i18n>teamCalendarTitle}" titleStyle="H4"/>
+					</toolbarContent>
+					<rows>
+						<PlanningCalendarRow appointments="{path : 'config>DayOffs', templateShareable: false}">
+							<headerContent>
+								<VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiTinyMarginBottom">
+									<Title text="{config>FirstName} {config>LastName}"/>
+									<Text class="sapUiTinyMarginTop" text="{config>Position}"/>
+								</VBox>
+							</headerContent>
+							<appointments>
+								<unified:CalendarAppointment startDate="{config>DateTimeFrom}" endDate="{config>DateTimeTo}"
+									title="{path: 'config>DayOffTypeID', formatter: '.formatter.dayOffTitle'}" text="{config>Comment}"
+									color="{ path: 'config>DayOffTypeID', formatter: '.formatter.dayOffColor' }"></unified:CalendarAppointment>
+							</appointments>
+						</PlanningCalendarRow>
+					</rows>
+				</PlanningCalendar>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

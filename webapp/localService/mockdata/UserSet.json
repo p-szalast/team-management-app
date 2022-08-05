@@ -1,0 +1,82 @@
+[{
+	"UserID": "pas",
+	"FirstName": "Paulina",
+	"LastName": "Staszyńska",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}, {
+	"UserID": "prs",
+	"FirstName": "Przemysław",
+	"LastName": "Szalast",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}, {
+	"UserID": "mtg",
+	"FirstName": "Mateusz",
+	"LastName": "Gruszczyk",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}, {
+	"UserID": "mhs",
+	"FirstName": "Michał",
+	"LastName": "Skrzypa",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": false
+}, {
+	"UserID": "abz",
+	"FirstName": "Adam",
+	"LastName": "Broszkiewicz",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}, {
+	"UserID": "jrb",
+	"FirstName": "Jeremi",
+	"LastName": "Balcar",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}, {
+	"UserID": "xdd",
+	"FirstName": "X",
+	"LastName": "D",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+},
+{
+	"UserID": "igb",
+	"FirstName": "Ignacy",
+	"LastName": "Bibuła",
+	"Address": "Gwiaździsta 62",
+	"City": "Wrocław",
+	"Country": "Poland",
+	"Email": "stazysta@hicron.com",
+	"Phone": "642124124",
+	"Admin": true
+}]

@@ -1,0 +1,84 @@
+[{
+	"DayOffID": "pas1",
+	"UserID": "pas",
+	"DateTimeFrom": "/Date(1654120800000)/",
+	"DateTimeTo": "/Date(1654552799000)/",
+	"DayOffTypeID": "L4",
+	"Comment": "Zwolnienie lekarskie"
+}, {
+	"DayOffID": "prs1",
+	"UserID": "prs",
+	"DateTimeFrom": "/Date(1656712800000)/",
+	"DateTimeTo": "/Date(1656885600000)/",
+	"DayOffTypeID": "nb",
+	"Comment": "Nieobecność z powodów osobistych"
+}, {
+	"DayOffID": "mtg1",
+	"UserID": "mtg",
+	"DateTimeFrom": "/Date(1654690838000)/",
+	"DateTimeTo": "/Date(1655295638000)/",
+	"DayOffTypeID": "nż",
+	"Comment": "Zwolnienie"
+}, {
+	"DayOffID": "mtg2",
+	"UserID": "mtg",
+	"DateTimeFrom": "/Date(1654086038000)/",
+	"DateTimeTo": "/Date(1656678038000)/",
+	"DayOffTypeID": "nb",
+	"Comment": "Delegacja"
+}, {
+	"DayOffID": "mhs1",
+	"UserID": "mhs",
+	"DateTimeFrom": "/Date(1654171200000)/",
+	"DateTimeTo": "/Date(1654178400000)/",
+	"DayOffTypeID": "on",
+	"Comment": "Bo mi się trochę nie chce"
+}, {
+	"DayOffID": "mhs2",
+	"UserID": "mhs",
+	"DateTimeFrom": "/Date(1659391200000)/",
+	"DateTimeTo": "/Date(1660600800000)/",
+	"DayOffTypeID": "uw",
+	"Comment": "Wakacje"
+}, {
+	"DayOffID": "pas3",
+	"UserID": "pas",
+	"DateTimeFrom": "/Date(1655676000000)/",
+	"DateTimeTo": "/Date(1656107999000)/",
+	"DayOffTypeID": "uw",
+	"Comment": "Wakacje"
+}, {
+	"DayOffID": "abz3",
+	"UserID": "abz",
+	"DateTimeFrom": "/Date(1659391200000)/",
+	"DateTimeTo": "/Date(1660600800000)/",
+	"DayOffTypeID": "uw",
+	"Comment": "Wakacje"
+}, {
+	"DayOffID": "mhs5",
+	"UserID": "mhs",
+	"DateTimeFrom": "/Date(1654426800000)/",
+	"DateTimeTo": "/Date(1654437600000)/",
+	"DayOffTypeID": "on",
+	"Comment": "Kolos"
+}, {
+	"DayOffID": "jrb5",
+	"UserID": "jrb",
+	"DateTimeFrom": "/Date(1654293600000)/",
+	"DateTimeTo": "/Date(1654552800000)/",
+	"DayOffTypeID": "nż"
+}, {
+	"DayOffID": "pas2",
+	"UserID": "pas",
+	"DateTimeFrom": "/Date(1656626400000)/",
+	"DateTimeTo": "/Date(1656712799000)/",
+	"DayOffTypeID": "nb",
+	"Comment": "zatwierdzona prezz przełożonego"
+}, {
+	"DayOffID": "pas4",
+	"UserID": "pas",
+	"DateTimeFrom": "/Date(1654768800000)/",
+	"DateTimeTo": "/Date(1654779600000)/",
+	"DayOffTypeID": "on",
+	"Comment": "Odbiór nadgodzin za pracę w weekend"
+}]

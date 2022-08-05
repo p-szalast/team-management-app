@@ -1,0 +1,40 @@
+<!-- PRS -->
+<mvc:View controllerName="project.fin.controller.UserCalendar" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:unified="sap.ui.unified" xmlns:customButton="project.fin.control">
+	<Page showHeader="true" title="{i18n>appTitle}" titleAlignment="Center" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<FlexBox id="callendarNavBtnsFlexBox" justifyContent="SpaceBetween" wrap="Wrap">
+			<Button id="addDayOffRequestBtn" text="{i18n>addDayOffRequestBtn}" icon="sap-icon://create-form" type="Emphasized" press=".onNavTo('addDayOffRequest')" class="sapUiTinyMargin"/>
+			<customButton:customButton id="teamCalendartBtn" text="{i18n>teamCalendarBtn}" press=".onNavToTeamCalendar" class="sapUiTinyMargin">
+				<customButton:leftIcon>
+					<core:Icon class="finCustomBtnIcon" src="sap-icon://meeting-room"/>
+				</customButton:leftIcon>
+				<customButton:rightIcon>
+					<core:Icon class="finCustomBtnIcon" src="sap-icon://navigation-right-arrow"/>
+				</customButton:rightIcon>
+			</customButton:customButton>
+
+			</FlexBox>
+			<SinglePlanningCalendar id="UserDayOffsCallendar" title="{i18n>userCallendar}" appointmentSelect=".handleDayOffSelect"
+				startDate="{config>/calendarStartDate}" fullDay="false" startHour="{config>/calendarStartHour}" endHour="{config>/calendarEndHour}"
+				stickyMode="All" appointments="{config>/aCurrentUserDayOffs}" moreLinkPress="onMoreLinks">
+				<actions>
+					<Button id="legendBtn" icon="sap-icon://legend" press=".showLegendPopover" tooltip="{i18n>legendTooltip}" ariaHasPopup="Dialog"/>
+				</actions>
+				<views>
+					<SinglePlanningCalendarMonthView key="MonthView" title="{i18n>month}"/>
+					<SinglePlanningCalendarWeekView key="WeekView" title="{i18n>week}"/>
+					<SinglePlanningCalendarDayView key="DayView" title="{i18n>day}"/>
+				</views>
+				<appointments>
+					<unified:CalendarAppointment title="{path: 'config>DayOffTypeID', formatter: '.formatter.dayOffTitle'}" text="{config>Comment}"
+						icon="sap-icon://calendar" color="{path:'config>DayOffTypeID', formatter: '.formatter.dayOffColor'}" tentative="true"
+						startDate="{config>DateTimeFrom}" endDate="{config>DateTimeTo}"></unified:CalendarAppointment>
+				</appointments>
+			</SinglePlanningCalendar>
+		</content>
+	</Page>
+</mvc:View>

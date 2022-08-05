@@ -1,0 +1,64 @@
+<mvc:View controllerName="project.fin.controller.AddEditTeam" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page title="{i18n>appTitle}" titleAlignment="Center" class="sapUiResponsiveContentPadding" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<Panel>
+				<form:Form editable="true">
+					<form:title>
+						<core:Title text="{=${config>/EditTeam} ? ${i18n>editTeamPageTitle} : ${i18n>addTeamPageTitle}}" icon="sap-icon://group" level="H1"
+							emphasized="true"/>
+					</form:title>
+					<form:layout >
+						<form:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4"
+							emptySpanL="4" emptySpanM="3" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</form:layout>
+					<form:formContainers>
+						<form:FormContainer>
+							<form:formElements>
+								<form:FormElement label="{i18n>TeamName}">
+									<form:fields >
+										<Input fieldGroupIds="addEditTeamForm" value="{config>/addEditTeam/TeamName}"
+											valueState="{= ${config>/addEditTeam/TeamNameValid} ? 'None' : 'Error'}" valueLiveUpdate="true" liveChange=".validator.validateNotEmpty"
+											required="true"/>
+									</form:fields>
+								</form:FormElement>
+								<form:FormElement label="{i18n>TeamDescription}">
+									<form:fields>
+										<TextArea value="{config>/addEditTeam/TeamDescription}" valueLiveUpdate="true" rows="3"/>
+									</form:fields>
+								</form:FormElement>
+							</form:formElements>
+						</form:FormContainer>
+					</form:formContainers>
+				</form:Form>
+				<List mode="Delete" delete=".handleDeleteMember" enableBusyIndicator="true" items="{ path: 'config>/PositionSet'}"
+					noDataText="{i18n>NoUsers}">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="{i18n>Team}"/>
+							<ToolbarSpacer/>
+							<Button text="{i18n>AddTeamMember}" enabled="{= ${config>/addEditTeam/allValid}}" icon="sap-icon://add-employee" type="Emphasized"
+								press=".onAddMemberOpenDialog"/>
+						</Toolbar>
+					</headerToolbar>
+					<ObjectListItem title="{config>FirstName} {config>LastName} ({config>UserID})">
+						<attributes>
+							<ObjectAttribute text="{config>PositionName}" class="finBoldText"/>
+						</attributes>
+						<attributes>
+							<ObjectAttribute text="{config>PositionDescription}"/>
+						</attributes>
+					</ObjectListItem>
+				</List>
+				<FlexBox justifyContent="Center" class="sapUiSmallMarginTop">
+					<Button text="{i18n>SaveTeam}" enabled="{= ${config>/addEditTeam/allValid}}" press=".onPressSaveTeam" type="Emphasized"/>
+					<Button text="{i18n>DeleteTeam}" type="Reject" press=".onPressDeleteTeam" class="sapUiSmallMarginBegin" visible="{config>/EditTeam}"/>
+					<Button text="{i18n>Cancel}" press=".onNavBack" class="sapUiSmallMarginBegin" visible="{= !${config>/EditTeam}}"/>
+				</FlexBox>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

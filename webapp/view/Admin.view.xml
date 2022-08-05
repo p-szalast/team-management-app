@@ -1,0 +1,114 @@
+<!--### MTG & PAS-->
+<mvc:View controllerName="project.fin.controller.Admin" xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:card="sap.f.cards">
+	<Page enableScrolling="false" class="sapUiResponsivePadding" title="{i18n>appTitle}" titleAlignment="Center" showNavButton="true"
+		navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<layout:ResponsiveSplitter id="splitter">
+				<layout:rootPaneContainer>
+					<layout:PaneContainer>
+						<layout:panes>
+							<layout:SplitPane requiredParentWidth="768">
+								<layout:layoutData>
+									<layout:SplitterLayoutData size="65%"/>
+								</layout:layoutData>
+								<VBox>
+									<FlexBox wrap="Wrap" class="sapUiSmallMarginBegin sapUiMediumMarginBottom finTileBox">
+										<VBox class="sapUiSmallMargin sapUiMediumMarginEnd" alignItems="Start">
+											<Title text="{i18n>AllTeams}" titleStyle="H4"/>
+											<NumericContent value="{TeamBasedOnUserID>/TeamsQuantity/All}" valueColor="Good" icon="sap-icon://company-view"
+												class="sapUiTinyMarginBottom finNumericContent"/>
+										</VBox>
+										<VBox class="sapUiSmallMargin" alignItems="Start">
+											<Title text="{i18n>TeamsNoUsers}" titleStyle="H4"/>
+											<NumericContent value="{TeamBasedOnUserID>/TeamsQuantity/WithNoUsers}" valueColor="Error" icon="sap-icon://employee-rejections"
+												class="sapUiTinyMarginBottom finNumericContent"/>
+										</VBox>
+									</FlexBox>
+									<FlexBox class="sapUiSmallMargin sapUiLargeMarginBottom finBtnBox finTileBox">
+										<GenericTile header="{i18n>addUserBtn}" press=".onNavToAddUser">
+											<TileContent>
+												<core:Icon src="sap-icon://add-employee" size="3rem" color="Positive"/>
+											</TileContent>
+										</GenericTile>
+										<GenericTile header="{i18n>editUserBtn}" press=".onNavToEditUser">
+											<TileContent>
+												<core:Icon src="sap-icon://user-edit" size="3rem" color="Critical"/>
+											</TileContent>
+										</GenericTile>
+										<GenericTile header="{i18n>addTeamBtn}" press=".onNavTo('addEditTeam')">
+											<TileContent>
+												<core:Icon src="sap-icon://positive" size="3rem" color="Positive"/>
+											</TileContent>
+										</GenericTile>
+										<GenericTile header="{i18n>assignTeamBtn}" blocked="{= ${TeamBasedOnUserID>/TeamsWithUsers/0} === undefined ? true : false}" press=".onNavTo('assignTeam')">
+											<TileContent>
+												<core:Icon src="sap-icon://citizen-connect" size="3rem" color="Default"/>
+											</TileContent>
+										</GenericTile>
+									</FlexBox>
+									<layout:FixFlex id='chartFixFlexarea' minFlexSize="300">
+										<layout:flexContent>
+											<viz:Popover id="idPopOverColumn"></viz:Popover>
+											<viz:VizFrame id="idVizFrameColumn" uiConfig="{applicationSet:'fiori'}" height='100%'
+												vizProperties="{interaction: {selectability: {mode:'SINGLE'}}, plotArea: {dataLabel: {formatString: '0', visible: 'true', position:'outside'}}, title:{ text:'Nieobecności zespołów', visible:'true'}}"
+												width="100%"
+												visible="{= ${TeamBasedOnUserID>/TeamsWithUsers/0} === undefined ? false : true}"
+												vizType="column">
+												<viz:dataset>
+													<viz.data:FlattenedDataset data="{TeamBasedOnUserID>/vizFrame}">
+														<viz.data:dimensions>
+															<viz.data:DimensionDefinition name="Zespół" value="{TeamBasedOnUserID>TeamName}"/>
+														</viz.data:dimensions>
+														<viz.data:measures>
+															<viz.data:MeasureDefinition unit=" dni" name="Liczba Dni" value="{TeamBasedOnUserID>timeCount}"/>
+														</viz.data:measures>
+													</viz.data:FlattenedDataset>
+												</viz:dataset>
+												<viz:feeds>
+													<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Liczba Dni"/>
+													<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Zespół"/>
+												</viz:feeds>
+											</viz:VizFrame>
+										</layout:flexContent>
+									</layout:FixFlex>
+								</VBox>
+							</layout:SplitPane>
+							<layout:SplitPane requiredParentWidth="768">
+								<layout:layoutData>
+									<layout:SplitterLayoutData size="35%" minSize="280px"/>
+								</layout:layoutData>
+								<List id="idListAdmin" growing="true" sticky="HeaderToolbar" includeItemInSelection="true" selectionChange="onListItemPress"
+									mode="SingleSelect" width="100%" headerText="{i18n>listOfAllTeams}"
+									items="{ path: 'TeamBasedOnUserID>/TeamsWithUsers', sorter: { path: 'TeamID' } }">
+									<headerToolbar>
+										<Toolbar>
+											<Title text="{i18n>listOfAllTeams}" level="H4"/>
+											<ToolbarSpacer/>
+											<Button text="{i18n>editTeamBtn}" enabled="{= ${TeamBasedOnUserID>/TeamsWithUsers/0} === undefined ? false : true}" icon="sap-icon://edit-outside" press=".onNavToEditTeam"/>
+										</Toolbar>
+									</headerToolbar>
+									<ObjectListItem title="{TeamBasedOnUserID>TeamName}" press="onOrderPress" detailPress="onOrderEditPress">
+										<attributes>
+											<ObjectAttribute text="{TeamBasedOnUserID>TeamDescription}"/>
+										</attributes>
+										<firstStatus>
+											<ObjectStatus text=""/>
+										</firstStatus>
+										<secondStatus>
+											<ObjectStatus text="{= ${TeamBasedOnUserID>hasUser} === false ? ${i18n>NoUsers} : ''}" state="Error"/>
+										</secondStatus>
+									</ObjectListItem>
+								</List>
+							</layout:SplitPane>
+						</layout:panes>
+					</layout:PaneContainer>
+				</layout:rootPaneContainer>
+			</layout:ResponsiveSplitter>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="utf-8">
+		<title>Zarządzanie zasobami ludzkimi</title>
+		<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAWQAAAFkBqp2phgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIJSURBVDiNjZLvSxNxHMffd/txtJ333bldP2hKP9Z2kcsRoydaUqKxMM1s4xoaNCjqYQ+FsD/AHgY965GgQeB8NgmiHkQIBiFBsJzdyFlzsUObt8M6zwel3MZO+z76ft8/Xt/PF742/MeSkql7hBfe+VtOjN6UkiLxtf5sOXJuVZY//rHtVxbF896qpr6uapozEj7mkDqYs+36jwGB3YzOzn9+Yd+nT50MHc/k5bzjjhTB3X4NBsMuEynduhOg9yoPxodn83I+CgDxKwQAha2mnkfmkBWAvj6YfPUlu9gDAIeEJvBMATq5Ct15pjbYqD2UGJ5YXFrq3jkXS78w+VaEzvYCoNb2BFy7kRzJZnO3zJqHEDi5AAAY0O3zloBAIMasKcpTwzBqoJcuX0RfXwwAPvh8roIloC3SPF4uK1z9VAsLn/7tjJf13i4gHO7kl78VHphNv/8oACCX+4qV70WF0vVnloCDh/mHmqbV/ItEYmgXkp6eee/1etetAPSGunHfbDicDnR1dWJsbBQ0TaNULB2oLwOAHQAi0Y7uSkUVzEYqdRvEQ0A8ZDUYOsVyHDfXCED/fat/3CyKYhCSFAdgVEGhPySGnrSHg48tJygrynPCkVhFVWWO9512k+Y2VVXdLtYdFwiZA9DwdgCg6oXegZEpGMaF35vaup1xzQCAjdrKZNITbxoBtgE/YJ6htsBWcwAAAABJRU5ErkJggg==" />
+		<script
+			id="sap-ui-bootstrap"
+			src="https://sapui5.netweaver.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_fiori_3_dark"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-bindingSyntax="complex"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async"
+			data-sap-ui-resourceroots='{
+				"project.fin": "../"
+			}'>
+		</script>
+		<script>
+			sap.ui.getCore().attachInit(function () {
+				sap.ui.require([
+					"project/fin/localService/mockserver",
+					"sap/m/Shell",
+					"sap/ui/core/ComponentContainer"
+				], function (mockserver, Shell, ComponentContainer) {
+					mockserver.init();
+
+					new Shell({
+						app : new ComponentContainer({
+							height: "100%",
+							name: "project.fin",
+							settings: {
+								componentData: {
+									startupParameters: {
+										login: "pas"
+									}
+								}
+							}
+						})
+					}).placeAt("content");
+				});
+
+			});
+		</script>
+		
+	</head>
+	<body class="sapUiBody" id="content">
+	</body>
+</html>

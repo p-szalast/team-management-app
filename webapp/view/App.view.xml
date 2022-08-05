@@ -1,0 +1,5 @@
+<mvc:View controllerName="project.fin.controller.App" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+	<Shell id="mainShell">
+		<App id="app"/>
+	</Shell>
+</mvc:View>

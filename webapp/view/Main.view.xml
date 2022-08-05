@@ -1,0 +1,56 @@
+<!--### MTG & PAS-->
+<mvc:View controllerName="project.fin.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true"
+	xmlns:form="sap.ui.layout.form" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:tnt="sap.tnt" height="100%">
+	<Page enableScrolling="false" class="sapUiResponsivePadding" title="{i18n>appTitle}" titleAlignment="Center">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+				<f:title>
+					<f:DynamicPageTitle>
+						<f:heading>
+							<Title text="{oData>FirstName} {oData>LastName}"/>
+						</f:heading>
+						<f:expandedContent>
+							<tnt:InfoLabel icon="sap-icon://leads" text="{i18n>admin}" visible="{= ${oData>Admin} === true ? true : false}" class="sapUiTinyMarginTop"/>
+						</f:expandedContent>
+						<f:snappedContent>
+							<tnt:InfoLabel icon="sap-icon://leads" text="{i18n>admin}" visible="{= ${oData>Admin} === true ? true : false}" class="sapUiTinyMarginTop"/>
+						</f:snappedContent>
+						<f:content></f:content>
+						<f:actions>
+							<Button text="{i18n>E1Calendar}" icon="sap-icon://calendar" press=".onNavTo('userCalendar')" type="Emphasized"/>
+							<Button text="{i18n>E1Admin}" icon="sap-icon://key-user-settings" visible="{= ${oData>Admin} === true ? true : false}" press=".onNavTo('admin')"/>
+						</f:actions>
+						<f:navigationActions></f:navigationActions>
+					</f:DynamicPageTitle>
+				</f:title>
+				<f:header>
+					<f:DynamicPageHeader pinnable="true">
+						<FlexBox wrap="Wrap" alignItems="Center" class="finDynamicHeaderBox">
+							<Avatar src="sap-icon://account" backgroundColor="Random" displaySize="M"/>
+							<layout:HorizontalLayout allowWrapping="true">
+								<layout:VerticalLayout class="sapUiMediumMarginEnd">
+									<ObjectAttribute title="{i18n>address}" text="{oData>Address}" class="sapUiTinyMarginBottom"/>
+									<ObjectAttribute title="{i18n>city}" text="{oData>City}" class="sapUiTinyMarginBottom"/>
+									<ObjectAttribute title="{i18n>country}" text="{oData>Country}" class="sapUiTinyMarginBottom"/>
+								</layout:VerticalLayout>
+								<layout:VerticalLayout>
+									<ObjectAttribute title="{i18n>email}" text="{oData>Email}" class="sapUiTinyMarginBottom"/>
+									<ObjectAttribute title="{i18n>phone}" text="{oData>Phone}" class="sapUiTinyMarginBottom"/>
+								</layout:VerticalLayout>
+							</layout:HorizontalLayout>
+						</FlexBox>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content>
+					<List id="idList" growing="true" sticky="HeaderToolbar" growingScrollToLoad="true" includeItemInSelection="false" width="100%"
+						headerText="{i18n>listOfTeams}: {oData>UserID}" items="{ path: 'TeamBasedOnUserID>/Teams', sorter: { path: 'TeamName', group: true } }">
+						<StandardListItem class="finListItemClass" title="{TeamBasedOnUserID>PositionName}" description="{TeamBasedOnUserID>PositionDescription}"/>
+					</List>
+				</f:content>
+			</f:DynamicPage>
+		</content>
+	</Page>
+</mvc:View>

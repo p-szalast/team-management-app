@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<ResponsivePopover id="dayOffDetailsPopover" title="{path: 'config>DayOffTypeID', formatter: '.formatter.dayOffTitle'}"
+		class="sapUiResponsivePadding--header" placement="Auto" afterClose="handlePopoverClose">
+		<beginButton>
+			<Button text="{i18n>editBtn}" icon="sap-icon://edit" type="Emphasized" press="handleEditButton" visible="{config>/PopoverBtnsVisibility}"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>deleteBtn}" type="Reject" icon="sap-icon://delete" visible="{config>/PopoverBtnsVisibility}"
+				press="handlePopoverDeleteButton"/>
+		</endButton>
+		<f:SimpleForm editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+			<Label text="{i18n>addInfo}" labelFor="moreInfo"/>
+			<Text id="moreInfoText" text="{config>Comment}"/>
+			<Label text="{i18n>from}" labelFor="startDate"/>
+			<Text text="{ path: 'config>DateTimeFrom', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM yyyy, HH:mm' } }"/>
+			<Label text="{i18n>to}" labelFor="endDate"/>
+			<Text text="{ path: 'config>DateTimeTo', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM yyyy, HH:mm' } }"/>
+		</f:SimpleForm>
+	</ResponsivePopover>
+</core:FragmentDefinition>

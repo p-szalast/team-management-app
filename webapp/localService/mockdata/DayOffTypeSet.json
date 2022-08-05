@@ -1,0 +1,16 @@
+[{
+	"DayOffTypeID": "nb",
+	"DayOffTypeName": "Nieobecność"
+}, {
+	"DayOffTypeID": "on",
+	"DayOffTypeName": "Odbiór nadgodzin"
+}, {
+	"DayOffTypeID": "L4",
+	"DayOffTypeName": "Urlop zdrowotny"
+}, {
+	"DayOffTypeID": "nż",
+	"DayOffTypeName": "Urlop na żądanie"
+}, {
+	"DayOffTypeID": "uw",
+	"DayOffTypeName": "Urlop wypoczynkowy"
+}]

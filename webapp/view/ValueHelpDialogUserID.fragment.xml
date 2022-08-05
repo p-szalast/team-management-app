@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="userIDselectDialog" title="{i18n>selectUserID}" items="{oData>/UserSet}" liveChange=".onValueHelpDialogSearch"
+		confirm=".onValueHelpDialogClose" cancel=".onValueHelpDialogClose" contentHeight="auto">
+		<StandardListItem title="{oData>UserID}" info="{oData>FirstName} {oData>LastName}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

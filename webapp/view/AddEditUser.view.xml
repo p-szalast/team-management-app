@@ -1,0 +1,84 @@
+<!--#PAS-->
+<mvc:View controllerName="project.fin.controller.AddEditUser" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page title="{i18n>appTitle}" class="sapUiResponsiveContentPadding" titleAlignment="Center" showNavButton="true" navButtonPress=".onNavBack">
+		<headerContent>
+			<Switch class="sapUiSmallMarginBegin" customTextOn="🌑️" customTextOff="☀️" state="{config>/darkModeEnabled}" change=".onModeChange"/>
+		</headerContent>
+		<content>
+			<Panel>
+				<f:Form class="sapUiSmallMarginTop" editable="true">
+					<f:title>
+						<core:Title text="{= ${config>/mode} ? ${i18n>addUser} : ${i18n>editUser}}"
+							icon="{= ${config>/mode} ? 'sap-icon://add-employee' : 'sap-icon://user-edit'}"/>
+					</f:title>
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+							emptySpanM="3" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer visible="{= !${config>/mode}}">
+							<f:FormElement label="{i18n>userID}">
+								<Input id="userIDinput" selectedKey="{config>/addEditUser/UserID}" showSuggestion="true" showValueHelp="true"
+									liveChange=".onUserIDinputTypping" valueHelpRequest=".onValueHelpRequest" suggestionItems="{oData>/UserSet}"
+									suggestionItemSelected=".onSuggestionItemSelected" required="true">
+									<core:ListItem key="{oData>UserID}" text="{oData>UserID} ({oData>FirstName} {oData>LastName})"/>
+								</Input>
+							</f:FormElement>
+						</f:FormContainer>
+						<f:FormContainer visible="{config>/editUserFormShown}">
+							<f:formElements>
+								<f:FormElement label="{i18n>firstName}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/FirstName}" required="true"
+										valueState="{= ${config>/addEditUser/FirstNameValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidFirstNameMsg}"
+										liveChange=".validator.validateName"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>lastName}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/LastName}" required="true"
+										valueState="{= ${config>/addEditUser/LastNameValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidLastNameMsg}"
+										liveChange=".validator.validateName"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>address}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/Address}" required="true"
+										valueState="{= ${config>/addEditUser/AddressValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidAddressMsg}"
+										liveChange=".validator.validateAddress"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>city}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/City}" required="true"
+										valueState="{= ${config>/addEditUser/CityValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidNameMsg}"
+										liveChange=".validator.validateCityNCountry"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>country}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/Country}" required="true"
+										valueState="{= ${config>/addEditUser/CountryValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidNameMsg}"
+										liveChange=".validator.validateCityNCountry"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>email}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/Email}" required="true"
+										valueState="{= ${config>/addEditUser/EmailValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidEmailMsg}"
+										liveChange=".validator.validateEmail"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>phone}">
+									<Input fieldGroupIds="addEditUserForm" value="{config>/addEditUser/Phone}" required="true"
+										valueState="{= ${config>/addEditUser/PhoneValid} ? 'None' : 'Error'}" valueStateText="{i18n>invalidPhoneMsg}"
+										liveChange=".validator.validatePhone"/>
+								</f:FormElement>
+								<f:FormElement label="{i18n>admin}">
+									<Switch type="AcceptReject" state="{config>/addEditUser/Admin}"/>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<FlexBox class="finBtnBox">
+					<Button class="btn" text="{i18n>saveBtn}" icon="sap-icon://save" type="Emphasized"
+						enabled="{= ${config>/addEditUser/allValid} &amp;&amp; ${config>/editUserFormShown}}" press=".onSaveUserPress"/>
+					<Button class="btn" text="{i18n>cancelBtn}" icon="sap-icon://undo" type="Transparent" press=".onCancelEditUser"/>
+					<Button class="btn" text="{i18n>removeUserBtn}" icon="sap-icon://delete" type="Reject" enabled="{config>/removeUserBtnEnabled}"
+						press=".onRemoveUser" visible="{= !${config>/mode}}"/>
+				</FlexBox>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>
+<!--/PAS-->
